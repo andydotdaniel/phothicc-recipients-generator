@@ -27,7 +27,8 @@ def contruct_message_body(items_qty, needs_delivery):
         Price('Pho Thicc', 75000),
         Price('Pho Super Thicc', 105000),
         Price('Extra Braised Beef', 25000),
-        Price('Extra Sliced Beef', 25000)
+        Price('Extra Sliced Beef', 25000),
+        Price('Extra Kikil', 15000)
     ]
 
     message = "Thank you for your order!";
@@ -77,12 +78,13 @@ with open(filename, mode="r") as csv_source_file:
                 contacts.append(contact.replace(" ", ""))
 
                 itemsQty = [
-                    row[8], # phoThicc
-                    row[9], # phoThiccSuper
-                    row[10], # extraBraisedBeef
-                    row[11] # extraSlicedBeef
+                    row[3], # phoThicc
+                    row[4], # phoThiccSuper
+                    row[5], # extraBraisedBeef
+                    row[6], # extraSlicedBeef
+                    row[7], # extraKikil
                 ]
-                messages.append(contruct_message_body(itemsQty, isEmpty(row[4])))
+                messages.append(contruct_message_body(itemsQty, isEmpty(row[-1])))
 
             recipient_count += 1
 
