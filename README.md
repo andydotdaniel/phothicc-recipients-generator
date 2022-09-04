@@ -1,0 +1,2 @@
+# PhoThicc Recipients Generator
+This project is a recipients generator that creates a list of recipients to be used alongside the [Whatsapp Bulk Messages](https://github.com/inforkgodara/whatsapp-bulk-messages-without-saving-contacts) repository.
