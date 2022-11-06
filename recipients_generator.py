@@ -26,6 +26,8 @@ def contruct_message_body(items_qty, needs_delivery):
     prices = [
         Price('Pho Thicc', 75000),
         Price('Pho Super Thicc', 105000),
+        Price('Secret Menu', 85000),
+        Price('Banh Mi', 75000),
         Price('Extra Braised Beef', 25000),
         Price('Extra Sliced Beef', 25000),
         Price('Extra Kikil', 15000)
@@ -39,18 +41,18 @@ def contruct_message_body(items_qty, needs_delivery):
         item_qty = items_qty[index]
         if not isEmpty(item_qty):
             totalItemPrice = prices[index].value * int(item_qty)
-            items_message_list.append(item_qty + ' ' + prices[index].name + ' (IDR ' + numberWithCommas(totalItemPrice) + ')')
+            items_message_list.append(' ' + item_qty + ' ' + prices[index].name + ' (IDR ' + numberWithCommas(totalItemPrice) + ')')
 
             totalPrice += totalItemPrice
 
     if needs_delivery:
         deliveryPrice = 35000
         totalPrice += deliveryPrice
-        items_message_list.append('Delivery (IDR ' + numberWithCommas(deliveryPrice) + ')')
+        items_message_list.append(' Delivery (IDR ' + numberWithCommas(deliveryPrice) + ')')
     else:
-        items_message_list.append('Delivery (IDR 0; Self-Pickup)')
+        items_message_list.append(' Delivery (IDR 0; Self-Pickup)')
 
-    message += " " + ','.join(items_message_list) + "."
+    message += ','.join(items_message_list) + "."
     message += " Total " + numberWithCommas(totalPrice)
     message += " Please make the payment as soon as possible to: BCA 8700098983 / Brian Dhicosumarvin Sumito. Please send your proof of payment immediately. cảm ơn"
 
@@ -80,9 +82,11 @@ with open(filename, mode="r") as csv_source_file:
                 itemsQty = [
                     row[3], # phoThicc
                     row[4], # phoThiccSuper
-                    row[5], # extraBraisedBeef
-                    row[6], # extraSlicedBeef
-                    row[7], # extraKikil
+                    row[5], # secretMenu
+                    row[6], # banhmi
+                    row[7], # extraBraisedBeef
+                    row[8], # extraSlicedBeef
+                    row[9] # extraKikil
                 ]
                 messages.append(contruct_message_body(itemsQty, isEmpty(row[-1])))
 
